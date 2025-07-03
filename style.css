@@ -1,0 +1,139 @@
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(to right, #000000, #1a0000);
+  color: white;
+}
+
+.auth-container {
+  background-color: rgba(0, 0, 0, 0.75);
+}
+
+.auth-card {
+  background: rgba(25, 25, 25, 0.95);
+  max-width: 900px;
+  width: 100%;
+  display: flex;
+  overflow: hidden;
+  border-radius: 2rem;
+  box-shadow: 0 0 30px rgba(255, 0, 0, 0.3);
+  animation: floatIn 0.8s ease-in-out;
+}
+
+@keyframes floatIn {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.auth-image {
+  background: url('cinema1.webp') no-repeat center center/cover;
+  width: 50%;
+  border-top-left-radius: 2rem;
+  border-bottom-left-radius: 2rem;
+  filter: brightness(0.8);
+}
+
+.auth-forms {
+  flex: 1;
+  color: white;
+  padding: 2rem;
+}
+
+.auth-form {
+  transition: all 0.4s ease;
+}
+
+.auth-form.d-none {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-20px);
+}
+
+.auth-form:not(.d-none) {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+input {
+  border-radius: 1rem;
+  padding: 0.75rem;
+  background-color: #111;
+  color: white;
+  border: 1px solid #ff3c3c;
+}
+
+input::placeholder {
+  color: #ccc;
+}
+
+input:focus {
+  border-color: #ff3c3c;
+  box-shadow: 0 0 5px rgba(255, 0, 0, 0.6);
+  background-color: #1a1a1a;
+}
+
+button {
+  border-radius: 1rem;
+  padding: 0.6rem;
+  font-weight: bold;
+  background-color: #ff3c3c;
+  border: none;
+  transition: background 0.3s;
+}
+
+button:hover {
+  background-color: #e60000;
+}
+
+#dynamicQuote {
+  color: #ff3c3c;
+  text-align: center;
+  font-size: 1rem;
+  font-style: italic;
+  margin-bottom: 30px;
+  height: 1.5rem;
+}
+
+@media (max-width: 768px) {
+  .auth-container{
+        padding: 40px;
+    }
+  .auth-card {
+    flex-direction: column;
+    border-radius: 1rem;
+    max-width: 100%;
+    height: auto;
+  }
+
+  .auth-image {
+    width: 100%;
+    height: 200px;
+    border-top-left-radius: 1rem;
+    border-bottom-left-radius: 0;
+    border-top-right-radius: 1rem;
+    background-position: center;
+  }
+
+  .auth-forms {
+    padding: 2rem 1.5rem;
+  }
+
+  input, button {
+    font-size: 1rem;
+  }
+
+  #formTitle {
+    font-size: 1.5rem;
+  }
+
+  #dynamicQuote {
+    font-size: 0.9rem;
+    margin-bottom: 20px;
+  }
+}
