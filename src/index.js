@@ -38,6 +38,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (foundUser) {
             alert(`✅ Welcome back, ${foundUser.name}!`);
             localStorage.setItem("loggedInUser", JSON.stringify(foundUser));
+            window.location.href = "home.html";
             // window.location.href = "home.html"; // optional redirect
         }
         else {
@@ -64,6 +65,7 @@ document.addEventListener("DOMContentLoaded", () => {
         users.push(newUser);
         localStorage.setItem("users", JSON.stringify(users));
         alert("✅ Account created! You can now log in.");
+        // Switch to login view
         toggleLink.click();
     });
     const quoteEl = document.getElementById("dynamicQuote");

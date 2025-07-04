@@ -50,6 +50,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (foundUser) {
       alert(`✅ Welcome back, ${foundUser.name}!`);
       localStorage.setItem("loggedInUser", JSON.stringify(foundUser));
+      window.location.href = "home.html";
       // window.location.href = "home.html"; // optional redirect
     } else {
       alert("❌ Invalid email or password.");
