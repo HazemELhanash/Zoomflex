@@ -2,7 +2,19 @@ var _a, _b;
 var currentPage = 1;
 function renderMovies(movies) {
     var grid = document.getElementById("movieGrid");
-    grid.innerHTML = movies.map(function (movie) { return "\n    <div class=\"col-md-4 mb-4\">\n      <div class=\"card bg-dark text-white h-100 movie-card\" onclick=\"window.location.href='details.html?id=".concat(movie.movie_id, "'\">\n        <img src=\"").concat(movie.poster_path, "\" class=\"card-img-top\" alt=\"").concat(movie.original_title, "\">\n        <div class=\"card-body\">\n          <h5 class=\"card-title\">").concat(movie.original_title, "</h5>\n          <p class=\"card-text\">\uD83D\uDCC5 ").concat(movie.release_date, " \u2022 \u2B50 ").concat(movie.vote_average, "</p>\n        </div>\n      </div>\n    </div>\n  "); }).join("");
+    grid.innerHTML = movies.map(function (movie, index) { return "\n    <div class=\"col-md-4 mb-4\">\n      <div class=\"card bg-dark text-white h-100 movie-card\" data-index=\"".concat(index, "\">\n        <img src=\"").concat(movie.poster_path, "\" class=\"card-img-top\" alt=\"").concat(movie.original_title, "\">\n        <div class=\"card-body\">\n          <h5 class=\"card-title\">").concat(movie.original_title, "</h5>\n          <p class=\"card-text\">\uD83D\uDCC5 ").concat(movie.release_date, " \u2022 \u2B50 ").concat(movie.vote_average, "</p>\n        </div>\n      </div>\n    </div>\n  "); }).join("");
+    // Add click listeners after rendering
+    document.querySelectorAll('.movie-card').forEach(function (card, idx) {
+        card.addEventListener("click", function () {
+            localStorage.setItem("selectedMovie", JSON.stringify(movies[idx]));
+            window.location.href = "details.html";
+        });
+    });
+}
+// Save selected movie in localStorage and go to details
+function handleMovieClick(movie) {
+    localStorage.setItem("selectedMovie", JSON.stringify(movie));
+    window.location.href = "details.html";
 }
 function renderSlideshow(movies) {
     var carousel = document.getElementById("carouselSlides");

@@ -11,9 +11,9 @@ let currentPage = 1;
 
 function renderMovies(movies: Movie[]): void {
   const grid = document.getElementById("movieGrid")!;
-  grid.innerHTML = movies.map(movie => `
+  grid.innerHTML = movies.map((movie, index) => `
     <div class="col-md-4 mb-4">
-      <div class="card bg-dark text-white h-100 movie-card" onclick="window.location.href='details.html?id=${movie.movie_id}'">
+      <div class="card bg-dark text-white h-100 movie-card" data-index="${index}">
         <img src="${movie.poster_path}" class="card-img-top" alt="${movie.original_title}">
         <div class="card-body">
           <h5 class="card-title">${movie.original_title}</h5>
@@ -22,7 +22,21 @@ function renderMovies(movies: Movie[]): void {
       </div>
     </div>
   `).join("");
+
+  // Add click listeners after rendering
+  document.querySelectorAll<HTMLElement>('.movie-card').forEach((card, idx) => {
+    card.addEventListener("click", () => {
+      localStorage.setItem("selectedMovie", JSON.stringify(movies[idx]));
+      window.location.href = "details.html";
+    });
+  });
 }
+// Save selected movie in localStorage and go to details
+function handleMovieClick(movie: Movie): void {
+  localStorage.setItem("selectedMovie", JSON.stringify(movie));
+  window.location.href = "details.html";
+}
+
 
 function renderSlideshow(movies: Movie[]): void {
   const carousel = document.getElementById("carouselSlides")!;
